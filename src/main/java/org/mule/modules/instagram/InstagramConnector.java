@@ -451,13 +451,7 @@ public abstract class InstagramConnector {
 /**
 * Geographies
 */
-	/**
-	 * Get recent media from a geography subscription that you created.In order to get "geo-id," please read "https://instagram.com/developer/endpoints/geographies/" and "https://instagram.com/developer/realtime/" pages.
-	 *  
-	 * @param geographySubscriptionId
-	 * @return
-	 * @throws IOException
-	 */
+
 	/**
 	 * Get recent media from a geography subscription that you created.In order to get "geo-id," please read "https://instagram.com/developer/endpoints/geographies/" and "https://instagram.com/developer/realtime/" pages.
 	 *  

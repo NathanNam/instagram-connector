@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Instagram
 Bundle-SymbolicName: org.mule.tooling.ui.contribution.instagram.3.5.0;singleton:=true
-Bundle-Version: 1.0.0.201508281031
+Bundle-Version: 1.0.0.201508281114
 Bundle-Activator: org.mule.tooling.ui.contribution.InstagramActivator
 Bundle-Vendor: Nathan (Dae Hyun) Nam
 Require-Bundle: org.eclipse.ui,
