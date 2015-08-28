@@ -1,0 +1,3 @@
+<!-- BEGIN_INCLUDE(instagram:greet) -->
+    <instagram:greet config-ref="" friend="#[map-payload:friend]" />
+<!-- END_INCLUDE(instagram:greet) -->

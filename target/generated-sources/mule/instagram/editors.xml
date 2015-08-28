@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/instagram" prefix="instagram">
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="Instagram" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="Instagram: OAuth2 Configuration" description="Global OAuth2 Configuration configuration information." icon="icons/small/instagram-connector-24x16.png" localId="config-with-oauth" image="icons/large/instagram-connector-48x32.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/instagram/parentConfig" connectivityTesting="off" metaData="static" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="Instagram configuration properties.">
+      <group id="instagramGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="connection" caption="Connection">
+        <string name="consumerKey" caption="Consumer Key" description="Application's client identifier (consumer key)." required="true" javaType="java.lang.String"></string>
+        <string name="consumerSecret" caption="Consumer Secret" description="Application's client secret (consumer secret)." required="true" javaType="java.lang.String"></string>
+        <string defaultValue="basic" name="scope" caption="Scope" description="Note that in order to use these extended permissions (comments+relationships+likes), first you need to submit your app for Instagram's review.
+Extended permissions can be specified in scope. (i.e. scope=basic+comments+relationships+likes)." required="false" javaType="java.lang.String"></string>
+        <enum defaultValue="EXCEPTION" allowsCustom="false" name="onNoToken" xsdType="string" caption="On No Token" description="Action to take when no token is found.">
+          <option value="EXCEPTION"></option>
+          <option value="STOP_FLOW"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Oauth" description="OAuth.">
+      <group id="oauthCallbackConfigGroup" caption="Oauth Callback Config">
+        <childElement inplace="true" name="http://www.mulesoft.org/schema/mule/instagram/oauth-callback-config" caption="" description=""></childElement>
+      </group>
+      <group id="oauthStoreConfigGroup" caption="Oauth Object Store Config">
+        <childElement inplace="true" name="http://www.mulesoft.org/schema/mule/instagram/oauth-store-config" caption="" description=""></childElement>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractinstagramconnectorgeneric" description="Interact with Instagram." icon="icons/small/instagram-connector-24x16.png" localId="abstractInstagramConnectorGeneric" image="icons/large/instagram-connector-48x32.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractInstagramConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/instagram/config-with-oauth" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.5.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.instagram" caption="Instagram" description="Instagram Anypoint Connector (OAuth2)." icon="icons/small/instagram-connector-24x16.png" localId="instagram-connector" image="icons/large/instagram-connector-48x32.png" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="instagramConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Instagram operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" versions="[3.5.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/authorize" modeLabel="Authorize"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/unauthorize" modeLabel="Unauthorize"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/delete-comments" modeLabel="Delete comments"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/delete-likes" modeLabel="Delete likes"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-comments" modeLabel="Get comments"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-feed" modeLabel="Get feed"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-followed-by" modeLabel="Get followed by"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-follows" modeLabel="Get follows"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-location" modeLabel="Get location"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-location-search" modeLabel="Get location search"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-media" modeLabel="Get media"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-media-liked" modeLabel="Get media liked"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-media-popular" modeLabel="Get media popular"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-media-search" modeLabel="Get media search"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-media-shortcode" modeLabel="Get media shortcode"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-recent-media" modeLabel="Get recent media"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-recent-media-from-a-geo-subscription" modeLabel="Get recent media from a geo subscription"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-recent-media-from-a-given-location" modeLabel="Get recent media from a given location"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-recently-tagged" modeLabel="Get recently tagged"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-relationship" modeLabel="Get relationship"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-requested-by" modeLabel="Get requested by"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-tag" modeLabel="Get tag"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-tag-search" modeLabel="Get tag search"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-user" modeLabel="Get user"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-user-search" modeLabel="Get user search"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/get-who-liked" modeLabel="Get who liked"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/post-comments" modeLabel="Post comments"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/post-likes" modeLabel="Post likes"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/instagram/post-modify-relationship" modeLabel="Post modify relationship"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector caption="Authorize" icon="icons/small/instagram-connector-24x16.png" localId="authorize" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="state" caption="State" description="Any value that you wish to be sent with the callback." required="false"></string>
+        <string name="accessTokenUrl" caption="Access Token Url" description="The URL defined by the Service Provider to obtain an access token." required="false"></string>
+        <string name="authorizationUrl" caption="Authorization Url" description="The URL defined by the Service Provider where the resource owner will be redirected to grant authorization to the connector." required="false"></string>
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Delete Comments" icon="icons/small/instagram-connector-24x16.png" localId="delete-comments" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="commentId" caption="Comment Id" description="" required="true" javaType="java.lang.String"></string>
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Delete Likes" icon="icons/small/instagram-connector-24x16.png" localId="delete-likes" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Comments" icon="icons/small/instagram-connector-24x16.png" localId="get-comments" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Feed" icon="icons/small/instagram-connector-24x16.png" localId="get-feed" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="countOfMedia" caption="Count Of Media" description="" required="true" javaType="java.lang.String"></string>
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Followed By" icon="icons/small/instagram-connector-24x16.png" localId="get-followed-by" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Follows" icon="icons/small/instagram-connector-24x16.png" localId="get-follows" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Location" icon="icons/small/instagram-connector-24x16.png" localId="get-location" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="locationId" caption="Location Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Location Search" icon="icons/small/instagram-connector-24x16.png" localId="get-location-search" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="distance" caption="Distance" description="" required="true" javaType="java.lang.String"></string>
+        <string name="latitude" caption="Latitude" description="" required="true" javaType="java.lang.String"></string>
+        <string name="longitude" caption="Longitude" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Media" icon="icons/small/instagram-connector-24x16.png" localId="get-media" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Media Liked" icon="icons/small/instagram-connector-24x16.png" localId="get-media-liked" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="countOfMedia" caption="Count Of Media" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Media Popular" icon="icons/small/instagram-connector-24x16.png" localId="get-media-popular" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General."></attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Media Search" icon="icons/small/instagram-connector-24x16.png" localId="get-media-search" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="distance" caption="Distance" description="" required="true" javaType="java.lang.String"></string>
+        <string name="latitude" caption="Latitude" description="" required="true" javaType="java.lang.String"></string>
+        <string name="longitude" caption="Longitude" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Media Shortcode" icon="icons/small/instagram-connector-24x16.png" localId="get-media-shortcode" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General."></attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Recent Media" icon="icons/small/instagram-connector-24x16.png" localId="get-recent-media" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="countOfMedia" caption="Count Of Media" description="" required="true" javaType="java.lang.String"></string>
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Recent Media From A Geo Subscription" icon="icons/small/instagram-connector-24x16.png" localId="get-recent-media-from-a-geo-subscription" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="geographySubscriptionId" caption="Geography Subscription Id" description="" required="true" javaType="java.lang.String"></string>
+        <string name="numberOfMedia" caption="Number Of Media" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Recent Media From A Given Location" icon="icons/small/instagram-connector-24x16.png" localId="get-recent-media-from-a-given-location" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="locationId" caption="Location Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Recently Tagged" icon="icons/small/instagram-connector-24x16.png" localId="get-recently-tagged" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="countOfTaggedMedia" caption="Count Of Tagged Media" description="" required="true" javaType="java.lang.String"></string>
+        <string name="tagName" caption="Tag Name" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Relationship" icon="icons/small/instagram-connector-24x16.png" localId="get-relationship" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Requested By" icon="icons/small/instagram-connector-24x16.png" localId="get-requested-by" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General."></attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Tag" icon="icons/small/instagram-connector-24x16.png" localId="get-tag" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="tagName" caption="Tag Name" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Tag Search" icon="icons/small/instagram-connector-24x16.png" localId="get-tag-search" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="tagName" caption="Tag Name" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get User" icon="icons/small/instagram-connector-24x16.png" localId="get-user" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get User Search" icon="icons/small/instagram-connector-24x16.png" localId="get-user-search" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="userName" caption="User Name" description="" required="true" javaType="java.lang.String"></string>
+        <integer min="0" step="1" name="numberOfUsers" caption="Number Of Users" description="" required="true" javaType="int"></integer>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get Who Liked" icon="icons/small/instagram-connector-24x16.png" localId="get-who-liked" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Post Comments" icon="icons/small/instagram-connector-24x16.png" localId="post-comments" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="comments" caption="Comments" description="" required="true" javaType="java.lang.String"></string>
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Post Likes" icon="icons/small/instagram-connector-24x16.png" localId="post-likes" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="mediaId" caption="Media Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Post Modify Relationship" icon="icons/small/instagram-connector-24x16.png" localId="post-modify-relationship" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="action" caption="Action" description="" required="true" javaType="java.lang.String"></string>
+        <string name="userId" caption="User Id" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+    <attribute-category caption="Advanced" description="Advanced">
+      <group id="advanced" caption="Advanced">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector caption="Unauthorize" icon="icons/small/instagram-connector-24x16.png" localId="unauthorize" image="icons/large/instagram-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/instagram/abstractInstagramConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="accessTokenId" caption="Access Token Id" description="The id of the access token that will be used to authenticate the call." required="false"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested caption="" description="" localId="oauth-callback-config" abstract="true">
+    <string name="domain" caption="Domain" description="The domain name to use when setting up the callback endpoint." required="true"></string>
+    <string name="localPort" caption="Local Port" description="The local port to use when setting up the callback endpoint." required="true"></string>
+    <string name="remotePort" caption="Remote Port" description="The remote port is the port used to build the external callback URL."></string>
+    <string name="path" caption="Path" description="The path to use when setting up the callback endpoint." required="true"></string>
+    <string name="connector-ref" caption="Http Connector Reference" description="The Http Connector to use when setting up the callback endpoint."></string>
+    <string name="defaultAccessTokenId" caption="Default Access Token Id" description="A Mule Expression to use as access token id."></string>
+    <boolean defaultValue="false" name="async" caption="Async" description="Async." supportsExpressions="false" fillLine="true"></boolean>
+  </nested>
+  <nested caption="" description="Configuration element for storage of access tokens" localId="oauth-store-config" abstract="true">
+    <string name="objectStore-ref" caption="Object Store Reference" description="Object store reference."></string>
+  </nested>
+</namespace>
