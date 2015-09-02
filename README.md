@@ -1,34 +1,19 @@
 # Instagram Anypoint Connector
-
-[Connector description including destination service or application with]
+Instagram Anypoint Connector allows you to easily connect to Instagram and to get meaningful data within a few clicks on Mule ESB or CloudHub.
 
 # Mule supported versions
-Examples:
-Mule 3.4.x, 3.5.x
-Mule 3.4.1
+Mule 3.7
 
 # [Destination service or application name] supported versions
-Example:
-Oracle E-Business Suite 12.1 and above.
-
-#Service or application supported modules
-Example:
-Oracle CRM
-Oracle Financials
-or 
-Salesforce API v.24
-Salesforce Metadata API
-
+[Instagram REST API v1] (https://instagram.com/developer/endpoints)
 
 # Installation 
-For beta connectors you can download the source code and build it with devkit to find it available on your local repository. Then you can add it to Studio
-
-For released connectors you can download them from the update site in Studio. 
-Open MuleStudio, go to Help → Install New Software and select MuleStudio Cloud Connectors Update Site where you’ll find all avaliable connectors.
+As a beta connector you can download the source code and build it with devkit to find it available on your local repository. Then you can add it to Studio
 
 #Usage
-For information about usage our documentation at http://github.com/mulesoft/instagram.
-
-# Reporting Issues
-
-We use GitHub:Issues for tracking issues with this connector. You can report new issues at this link http://github.com/mulesoft/instagram/issues.
+1. After you import and install the Instagram Connector in Anypoint Studio, you need to create an [Instagram Client on Instagram] (https://instagram.com/developer/clients/manage/)
+2. Get your Client ID and Client Secret of the Instgram Client.
+3. After you drag and drop a HTTP connector in Anypoint Studio, please drag and drop the Instagram Connector.
+4. Select the "Authorize" operation with your Client ID, Client Secret and Callback option.
+5. Once you get authorized, please feel free to play with other operations
+ * In order to utilize full functions of this connector, your Instagram Client needs to have [extended permissions](https://instagram.com/developer/authentication/). Since my Instagram Client is still in Instagram's review, I haven't been able to test POST/DEL operations of this connector.
