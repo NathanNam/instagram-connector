@@ -16,4 +16,4 @@ As a beta connector you can download the source code and build it with devkit to
 3. After you drag and drop a HTTP connector in Anypoint Studio, please drag and drop the Instagram Connector.
 4. Select the "Authorize" operation with your Client ID, Client Secret and Callback option.
 5. Once you get authorized, please feel free to play with other operations
- * In order to utilize full functions of this connector, your Instagram Client needs to have [extended permissions](https://instagram.com/developer/authentication/). Since my Instagram Client is still in Instagram's review, I haven't been able to test POST/DEL operations of this connector.
+ ** In order to utilize full functions of this connector, your Instagram Client needs to have [extended permissions](https://instagram.com/developer/authentication/). Since my Instagram Client is still in Instagram's review, I haven't been able to test POST/DEL operations of this connector.
