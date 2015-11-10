@@ -92,8 +92,6 @@ public class OAuth2ConfigurationStrategy {
 	 */
 	public void setAccessToken(String accessToken){
 		this.accessToken = accessToken;
-		//for debugging
-		System.out.println(accessToken);
 	}
 	
 	/**
